@@ -1,0 +1,24 @@
+create database call_list;
+\c call_list;
+CREATE TABLE users(id serial, first_name varchar(10), email varchar(30));
+\dt
+INSERT INTO users (first_name, email) values ('Carlos','carlos@gmail.com');
+INSERT INTO users (first_name, email) values ('Laura','laura@gmail.com');
+SELECT * from users
+CREATE TABLE calls(id serial primary key,phone integer, date date, user_id integer);
+\dt
+ALTER TABLE users ADD COLUMN last_name varchar(10);
+UPDATE users set last_name = 'mcfly' where id = 1 ;
+UPDATE users set last_name = 'mcfly' where id = 2 ;
+ALTER TABLE users ADD PRIMARY KEY (id);
+ALTER TABLE calls ADD CONSTRAINT userfk FOREIGN KEY (user_id) REFERENCES users(id);
+INSERT INTO calls (phone, date, user_id) VALUES(9876543, '2018-05-30',1);
+INSERT INTO calls (phone, date, user_id) VALUES (6457432, '2012-02-23',2);
+SELECT * FROM calls ORDER BY date DESC;
+
+
+
+
+
+
+
